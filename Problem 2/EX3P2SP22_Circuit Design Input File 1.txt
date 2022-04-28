@@ -1,0 +1,41 @@
+
+# Modified from Smay's code for HW9
+
+# Lines starting with a # character are comments to be ignored
+# You may have comment lines anywhere in the file
+
+# blank lines are also allowed and will be ignored
+
+# Other lines in the file are identified by specific KEYWORDS, followed by data
+# KEYWORDS may include Capital letters, but capitalization must not be required
+# each line stands alone, and there is no required ORDER to the file
+
+Title, 'Circuit Example EX3P2SP22'
+
+#          resistor(ohms) inductor(L) capacitor(C) 
+Material,       10,            20,       0.05
+
+voltage,    '20*sin(20*t);    t=time'
+
+# Nodes- locations for link-joints and applied loads
+# The node name is a string
+#      name           x     y
+node,  i1 (Direction: Up),    0,    0
+node,  i1 (Direction: Right)  , 0,    100.00
+node,  Node 2,        120,  0
+node,  i2 (Direction: Down),  240,  100.00
+node,  i2 (Direction: Left),  240,  0
+node,  Node 1,        120,  100.00
+node,  V(t),          0,    50
+node,  R,             120,  50
+node,  L,             60,   100
+node,  C,             240,  50
+
+# Links - structural members connecting two nodes
+       name    Node-1        Node-2    
+link,  1,     i1 (Direction: Up),    i1 (Direction: Right)
+link,  2,     i1 (Direction: Up),    Node 2
+link,  top,   i1 (Direction: Right), i2 (Direction: Down)
+link,  3,     Node 2,        i2 (Direction: Left)
+link,  4,     i2 (Direction: Down),  i2 (Direction: Left)
+link,  5,     Node 2,        Node 1
